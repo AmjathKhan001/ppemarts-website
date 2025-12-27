@@ -871,3 +871,155 @@ a:hover {
         grid-template-columns: 1fr;
     }
 }
+/* ===== New Styles for Updated Pages ===== */
+
+/* Product Image Container */
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-rating {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ff4c4c;
+    margin: 10px 0;
+}
+
+/* Table Responsive */
+.table-responsive {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* Animation for tool categories */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Additional button styles */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    color: white;
+}
+
+/* Form control styles */
+select.input-field {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+    padding-right: 45px;
+}
+
+/* Range input styles */
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #0099e5;
+    cursor: pointer;
+}
+
+/* Checkbox styles */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #0099e5;
+}
+
+/* Badge styles */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Quick filter active state */
+.quick-filter.active {
+    background: #0099e5;
+    color: white;
+    border-color: #0099e5;
+}
+
+/* ===== Mobile Improvements ===== */
+@media (max-width: 768px) {
+    .products-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters-sidebar {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .calculator-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .tool-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .category-grid,
+    .ppe-items-grid,
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-card-small {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print styles for calculator */
+@media print {
+    .header, .footer, .social-share, .calculator-input-section,
+    .hero, .sale-banner, .tools-section, .testimonials {
+        display: none !important;
+    }
+    
+    .calculator-results-section {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        color: #000;
+    }
+}
