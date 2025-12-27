@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPE Marts - Personal Protective Equipment Affiliate Marketplace</title>
+    <meta name="description" content="Find the best PPE kits, safety gear, and protective equipment. Calculate your PPE requirements with our free calculator tool.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-376208036"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-376208036');
+    </script>
+    
+    <!-- Google AdSense Auto Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6687860250561653" crossorigin="anonymous"></script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "PPE Marts",
+        "url": "https://www.ppemarts.com",
+        "description": "Personal Protective Equipment marketplace with PPE calculator tools",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PPE Marts",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.ppemarts.com/assets/logo.png"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <!-- Replace with your logo -->
+                        <img src="assets/logo.png" alt="PPE Marts Logo" class="logo-img">
+                        <span class="logo-text">PPE Marts</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#ppe-products" class="nav-link">PPE Products</a></li>
+                    <li class="nav-item"><a href="#ppe-calculator" class="nav-link">PPE Calculator</a></li>
+                    <li class="nav-item"><a href="tools-explore.html" class="nav-link">Explore Tools</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="about-us.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Find The Right PPE For Maximum Safety</h1>
+                <p class="hero-subtitle">Browse certified Personal Protective Equipment kits and calculate exact requirements for your team</p>
+                <div class="hero-buttons">
+                    <a href="#ppe-products" class="btn btn-primary">Explore PPE Products</a>
+                    <a href="#ppe-calculator" class="btn btn-secondary">Use PPE Calculator</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="visitorCount">1,234</span>
+                    <span class="stat-label">Visitors Today</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">PPE Products</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Safety Compliant</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PPE Calculator Section -->
+    <section class="calculator-section" id="ppe-calculator">
+        <div class="container">
+            <h2 class="section-title">PPE Requirements Calculator</h2>
+            <p class="section-subtitle">Calculate exact PPE quantities needed for your workforce</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-input">
+                    <div class="input-group">
+                        <label for="workers">Number of Workers</label>
+                        <input type="number" id="workers" min="1" max="1000" value="10" class="input-field">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="workDays">Work Days Per Month</label>
+                        <input type="number" id="workDays" min="1" max="31" value="22" class="input-field">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="ppeType">Primary PPE Type</label>
+                        <select id="ppeType" class="input-field">
+                            <option value="basic">Basic PPE Kit (Mask + Gloves + Gown)</option>
+                            <option value="full">Full Body Protection</option>
+                            <option value="respiratory">Respiratory Protection</option>
+                            <option value="fall">Fall Protection Gear</option>
+                            <option value="custom">Custom Selection</option>
+                        </select>
+                    </div>
+                    
+                    <div class="ppe-items" id="ppeCustomSection">
+                        <h4>Select PPE Items (for custom calculation):</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="ppeItem" value="mask" checked> Face Masks</label>
+                            <label><input type="checkbox" name="ppeItem" value="gloves" checked> Gloves</label>
+                            <label><input type="checkbox" name="ppeItem" value="gown"> Disposable Gowns</label>
+                            <label><input type="checkbox" name="ppeItem" value="faceShield"> Face Shields</label>
+                            <label><input type="checkbox" name="ppeItem" value="goggles"> Safety Goggles</label>
+                            <label><input type="checkbox" name="ppeItem" value="respirator"> Respirators</label>
+                            <label><input type="checkbox" name="ppeItem" value="harness"> Safety Harness</label>
+                            <label><input type="checkbox" name="ppeItem" value="helmet"> Safety Helmet</label>
+                            <label><input type="checkbox" name="ppeItem" value="shoes"> Safety Shoes</label>
+                        </div>
+                    </div>
+                    
+                    <button id="calculateBtn" class="btn btn-primary btn-calculate">
+                        <i class="fas fa-calculator"></i> Calculate Requirements
+                    </button>
+                </div>
+                
+                <div class="calculator-results">
+                    <h3><i class="fas fa-clipboard-list"></i> Calculated Requirements</h3>
+                    <div class="results-container" id="resultsContainer">
+                        <p class="results-placeholder">Enter your requirements and click "Calculate" to see results</p>
+                        <div class="results-table" id="resultsTable"></div>
+                        <div class="results-total" id="resultsTotal"></div>
+                    </div>
+                    
+                    <div class="calculator-actions">
+                        <button id="resetBtn" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reset Calculator
+                        </button>
+                        <button id="printBtn" class="btn btn-secondary">
+                            <i class="fas fa-print"></i> Print Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PPE Products Section -->
+    <section class="products-section" id="ppe-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured PPE Products</h2>
+                <p class="section-subtitle">Click "Buy Now" to purchase from our affiliate partners</p>
+            </div>
+            
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="respiratory">Respiratory</button>
+                <button class="filter-btn" data-category="body">Body Protection</button>
+                <button class="filter-btn" data-category="fall">Fall Protection</button>
+                <button class="filter-btn" data-category="hand">Hand Protection</button>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+            
+            <!-- Amazon Clearance Sale Banner -->
+            <div class="sale-banner">
+                <div class="sale-content">
+                    <h3><i class="fas fa-fire"></i> Clearance Sale Store</h3>
+                    <p>Up to 70% Off on Safety Equipment - Limited Time Offer!</p>
+                    <a href="https://amzn.to/4p8ceG6" target="_blank" class="btn btn-sale">
+                        <i class="fas fa-shopping-cart"></i> Shop Now on Amazon
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Preview Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">Explore Safety Tools</h2>
+            <p class="section-subtitle">Professional calculators and tools for safety planning</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon" style="background-color: #0099e5;">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>HSE Calculators</h3>
+                    <p>Health, Safety & Environment calculators for risk assessment and compliance.</p>
+                    <a href="tools-explore.html#hse" class="tool-link">Explore Tools →</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon" style="background-color: #ff4c4c;">
+                        <i class="fas fa-fire-extinguisher"></i>
+                    </div>
+                    <h3>Fire Safety Tools</h3>
+                    <p>Complete suite of fire safety calculators and assessment tools.</p>
+                    <a href="tools-explore.html#fire" class="tool-link">Explore Tools →</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon" style="background-color: #34bf49;">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Utility Tools</h3>
+                    <p>Daily web tools, converters, and productivity applications.</p>
+                    <a href="tools-explore.html#utility" class="tool-link">Explore Tools →</a>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="tools-explore.html" class="btn btn-primary">View All Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="PPE Marts" class="footer-logo-img">
+                        <h3>PPE Marts</h3>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted marketplace for Personal Protective Equipment and safety calculation tools.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/amjikhan" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/amjathkhan_official" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank" class="social-link">
+                            <i class="fas fa-feather"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#ppe-products">PPE Products</a></li>
+                        <li><a href="#ppe-calculator">PPE Calculator</a></li>
+                        <li><a href="tools-explore.html">Explore Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-use.html">Terms of Use</a></li>
+                        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact@amjathkhan.com</p>
+                        <p><i class="fas fa-phone"></i> +91-9750816163</p>
+                        <p><i class="fas fa-globe"></i> <a href="https://www.amjathkhan.com" target="_blank">www.amjathkhan.com</a></p>
+                    </div>
+                    
+                    <!-- Buy Me a Coffee -->
+                    <div class="coffee-section">
+                        <p>Support our work:</p>
+                        <a href="https://buymeacoffee.com/s.amjathkhan" target="_blank" class="coffee-btn">
+                            <i class="fas fa-coffee"></i> Buy Me a Coffee
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="visitor-counter">
+                    <i class="fas fa-eye"></i> 
+                    <span>Website Visitors: <span id="totalVisitors">2,847</span></span>
+                </div>
+                <p class="copyright">&copy; 2024 PPE Marts. All rights reserved.</p>
+                <div class="footer-badges">
+                    <span class="badge">Mobile Friendly</span>
+                    <span class="badge">SSL Secure</span>
+                    <span class="badge">Ad Compliant</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Social Sharing Floating Buttons -->
+    <div class="social-share">
+        <button class="share-btn" onclick="shareOnFacebook()">
+            <i class="fab fa-facebook-f"></i>
+        </button>
+        <button class="share-btn" onclick="shareOnTwitter()">
+            <i class="fab fa-twitter"></i>
+        </button>
+        <button class="share-btn" onclick="shareOnLinkedIn()">
+            <i class="fab fa-linkedin-in"></i>
+        </button>
+        <button class="share-btn" onclick="shareByEmail()">
+            <i class="fas fa-envelope"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+    
+    <!-- Product Data & Affiliate Links -->
+    <script>
+        // Product data with affiliate links
+        const products = [
+            {
+                id: 1,
+                name: "Personal Protective Equipment KIT (PPE KIT)",
+                category: "body",
+                image: "https://images.unsplash.com/photo-1584634731339-252c581abfc5?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/4bcAm6e",
+                description: "Complete PPE kit for full body protection"
+            },
+            {
+                id: 2,
+                name: "Serplex Gas Mask Set Respirator",
+                category: "respiratory",
+                image: "https://images.unsplash.com/photo-1586511925557-d4c1f0f8c6c9?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/4s4Fr6K",
+                description: "Gas mask with respirator for chemical protection"
+            },
+            {
+                id: 3,
+                name: "Non Woven Polypropylene Disposable Gown",
+                category: "body",
+                image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w-300",
+                affiliateLink: "https://amzn.to/49rqlRr",
+                description: "Disposable protective gown for medical use"
+            },
+            {
+                id: 4,
+                name: "CF IND Full Body Safety Harness",
+                category: "fall",
+                image: "https://images.unsplash.com/photo-1541534741688-6072d8c57cfb?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/4jh3StM",
+                description: "Full body harness for fall protection"
+            },
+            {
+                id: 5,
+                name: "Karam Magna Premium Full Body Safety Harness",
+                category: "fall",
+                image: "https://images.unsplash.com/photo-1584634731339-252c581abfc5?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/494Ws89",
+                description: "Premium safety harness with comfort padding"
+            },
+            {
+                id: 6,
+                name: "KARAM Full Body Work Positioning Safety Harness",
+                category: "fall",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/4qwnnkB",
+                description: "Adjustable harness for work positioning"
+            },
+            {
+                id: 7,
+                name: "FREEMANS IKON Measuring Tape",
+                category: "hand",
+                image: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/4pby4Ic",
+                description: "Steel inch measuring tape for safety measurements"
+            },
+            {
+                id: 8,
+                name: "LADWA Safety Belt Harness Full Body",
+                category: "fall",
+                image: "https://images.unsplash.com/photo-1564982752979-3f7bc974d29a?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/3YfB5fs",
+                description: "Full body fall protection harness"
+            },
+            {
+                id: 9,
+                name: "Static Outdoor Climbing Rope with Hooks",
+                category: "fall",
+                image: "https://images.unsplash.com/photo-1511994717241-8e4e484dfa8c?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/4p9GqQo",
+                description: "Climbing rope with safety hooks"
+            },
+            {
+                id: 10,
+                name: "IBS Adjustable Half Body Industrial Safety Belt",
+                category: "fall",
+                image: "https://images.unsplash.com/photo-1541534741688-6072d8c57cfb?auto=format&fit=crop&w=300",
+                affiliateLink: "https://amzn.to/3YI7QSz",
+                description: "Adjustable half body safety belt for men"
+            }
+        ];
+    </script>
+</body>
+</html>
