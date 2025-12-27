@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - PPE Marts | Safety Tips, Guides & Industry News</title>
+    <meta name="description" content="Read the latest articles on PPE safety, equipment guides, industry regulations, and workplace protection tips from safety experts.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Blog-specific CSS -->
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(52, 191, 73, 0.1) 0%, rgba(0, 153, 229, 0.1) 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        
+        .blog-categories {
+            padding: 40px 0;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .category-btn {
+            padding: 10px 25px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-btn.active {
+            background: #0099e5;
+            color: white;
+            border-color: #0099e5;
+        }
+        
+        .category-btn:hover:not(.active) {
+            background: #e9ecef;
+        }
+        
+        .blog-grid {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 25px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .blog-category {
+            background: rgba(255, 76, 76, 0.1);
+            color: #ff4c4c;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .read-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .blog-cta {
+            padding: 60px 0;
+            background: linear-gradient(45deg, #0099e5, #34bf49);
+            color: white;
+            text-align: center;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn.active {
+            background: #0099e5;
+            color: white;
+            border-color: #0099e5;
+        }
+        
+        .page-btn:hover:not(.active) {
+            background: #f8f9fa;
+        }
+        
+        .coming-soon {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        
+        .coming-soon i {
+            font-size: 4rem;
+            color: #0099e5;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .blog-posts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-376208036"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-376208036');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6687860250561653" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/logo.png" alt="PPE Marts Logo" class="logo-img">
+                        <span class="logo-text">PPE Marts</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html#ppe-products" class="nav-link">PPE Products</a></li>
+                    <li class="nav-item"><a href="index.html#ppe-calculator" class="nav-link">PPE Calculator</a></li>
+                    <li class="nav-item"><a href="tools-explore.html" class="nav-link">Explore Tools</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li class="nav-item"><a href="about-us.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="hero-title">PPE Safety Blog</h1>
+            <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto 30px;">
+                Expert insights, safety guides, industry news, and practical tips for workplace protection
+            </p>
+            <div class="search-box" style="max-width: 500px; margin: 0 auto;">
+                <div style="position: relative;">
+                    <input type="text" placeholder="Search articles..." style="width: 100%; padding: 15px 50px 15px 20px; border: 1px solid #ddd; border-radius: 50px; font-size: 1rem;">
+                    <button style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #666; font-size: 1.2rem; cursor: pointer;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="container">
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All Articles</button>
+                <button class="category-btn" data-category="guides">PPE Guides</button>
+                <button class="category-btn" data-category="safety">Safety Tips</button>
+                <button class="category-btn" data-category="industry">Industry News</button>
+                <button class="category-btn" data-category="regulations">Regulations</button>
+                <button class="category-btn" data-category="tools">Tool Tutorials</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="blog-grid">
+        <div class="container">
+            <div class="coming-soon">
+                <i class="fas fa-blog"></i>
+                <h2>Blog Coming Soon!</h2>
+                <p style="max-width: 600px; margin: 20px auto 30px; color: #666; line-height: 1.6;">
+                    We're working hard to bring you valuable content about PPE safety, equipment guides, industry regulations, and practical workplace protection tips. Our blog will launch soon with expert articles from safety professionals.
+                </p>
+                <div class="hero-buttons">
+                    <a href="index.html#ppe-calculator" class="btn btn-primary">Try PPE Calculator</a>
+                    <a href="tools-explore.html" class="btn btn-secondary">Explore Tools</a>
+                </div>
+            </div>
+            
+            <!-- Sample Blog Posts (Will be populated when blog launches) -->
+            <div class="blog-posts" id="blogPosts">
+                <!-- Blog posts will be loaded here when available -->
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="newsletter" style="background: white; padding: 40px; border-radius: 10px; text-align: center; margin-top: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 15px;">Stay Updated</h3>
+                <p style="color: #666; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Subscribe to our newsletter to get notified when we publish new articles about PPE safety and workplace protection.
+                </p>
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="email" placeholder="Your email address" style="flex: 1; padding: 12px 20px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
+                        <button class="btn btn-primary" style="padding: 12px 25px;">Subscribe</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #888; margin-top: 10px; text-align: left;">
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog CTA -->
+    <section class="blog-cta">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Want to Contribute?</h2>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9;">
+                Are you a safety professional with insights to share? We're looking for guest contributors for our blog.
+            </p>
+            <a href="mailto:contact@amjathkhan.com?subject=Blog Contribution" class="btn" style="background: white; color: #0099e5; padding: 15px 40px; font-size: 1.1rem; font-weight: 600;">
+                <i class="fas fa-pen-alt"></i> Write for Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="PPE Marts" class="footer-logo-img">
+                        <h3>PPE Marts</h3>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted marketplace for Personal Protective Equipment and safety calculation tools.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/amjikhan" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/amjathkhan_official" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank" class="social-link">
+                            <i class="fas fa-feather"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#ppe-products">PPE Products</a></li>
+                        <li><a href="index.html#ppe-calculator">PPE Calculator</a></li>
+                        <li><a href="tools-explore.html">Explore Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-use.html">Terms of Use</a></li>
+                        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact@amjathkhan.com</p>
+                        <p><i class="fas fa-phone"></i> +91-9750816163</p>
+                        <p><i class="fas fa-globe"></i> <a href="https://www.amjathkhan.com" target="_blank">www.amjathkhan.com</a></p>
+                    </div>
+                    
+                    <div class="coffee-section">
+                        <p>Support our work:</p>
+                        <a href="https://buymeacoffee.com/s.amjathkhan" target="_blank" class="coffee-btn">
+                            <i class="fas fa-coffee"></i> Buy Me a Coffee
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="visitor-counter">
+                    <i class="fas fa-eye"></i> 
+                    <span>Website Visitors: <span id="totalVisitors">2,847</span></span>
+                </div>
+                <p class="copyright">&copy; 2024 PPE Marts. All rights reserved.</p>
+                <div class="footer-badges">
+                    <span class="badge">Mobile Friendly</span>
+                    <span class="badge">SSL Secure</span>
+                    <span class="badge">Ad Compliant</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Category Filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const blogPosts = document.getElementById('blogPosts');
+        
+        // Sample blog data (for when blog launches)
+        const samplePosts = [
+            {
+                id: 1,
+                title: "Complete Guide to Selecting the Right PPE for Construction Sites",
+                excerpt: "Learn how to choose appropriate personal protective equipment for different construction hazards and ensure compliance with safety standards.",
+                category: "guides",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600",
+                readTime: "8 min read",
+                date: "Coming Soon"
+            },
+            {
+                id: 2,
+                title: "Top 10 Workplace Safety Tips Every Employer Should Know",
+                excerpt: "Essential safety practices that can significantly reduce workplace accidents and improve overall safety culture in your organization.",
+                category: "safety",
+                image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600",
+                readTime: "6 min read",
+                date: "Coming Soon"
+            },
+            {
+                id: 3,
+                title: "Understanding the Latest OSHA Regulations for PPE",
+                excerpt: "Stay updated with the most recent OSHA requirements for personal protective equipment and avoid costly compliance issues.",
+                category: "regulations",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600",
+                readTime: "10 min read",
+                date: "Coming Soon"
+            }
+        ];
+        
+        // Function to display blog posts
+        function displayBlogPosts(posts) {
+            blogPosts.innerHTML = '';
+            
+            posts.forEach(post => {
+                const blogCard = document.createElement('div');
+                blogCard.className = 'blog-card';
+                blogCard.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">${post.category.toUpperCase()}</span>
+                            <span>${post.date}</span>
+                        </div>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-excerpt">${post.excerpt}</p>
+                        <div class="blog-footer">
+                            <span class="read-time">${post.readTime}</span>
+                            <a href="#" class="btn" style="padding: 8px 20px; background: #f8f9fa; color: #333; border-radius: 6px;">Read More</a>
+                        </div>
+                    </div>
+                `;
+                blogPosts.appendChild(blogCard);
+            });
+        }
+        
+        // Filter blog posts by category
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter posts
+                const category = this.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    displayBlogPosts(samplePosts);
+                } else {
+                    const filteredPosts = samplePosts.filter(post => post.category === category);
+                    displayBlogPosts(filteredPosts);
+                }
+            });
+        });
+        
+        // Initialize with all posts
+        displayBlogPosts(samplePosts);
+        
+        // Visitor Counter
+        function updateVisitorCount() {
+            const totalVisitors = document.getElementById('totalVisitors');
+            
+            if (localStorage.getItem('ppemartsVisitors')) {
+                totalVisitors.textContent = parseInt(localStorage.getItem('ppemartsVisitors')).toLocaleString();
+            } else {
+                const baseVisitors = 2847;
+                totalVisitors.textContent = baseVisitors.toLocaleString();
+            }
+        }
+        
+        updateVisitorCount();
+        
+        // Update visitor count every 30 minutes
+        setInterval(() => {
+            const current = parseInt(localStorage.getItem('ppemartsVisitors') || '2847');
+            const increment = Math.floor(Math.random() * 5) + 1;
+            localStorage.setItem('ppemartsVisitors', (current + increment).toString());
+            document.getElementById('totalVisitors').textContent = (current + increment).toLocaleString();
+        }, 30 * 60 * 1000);
+        
+        // Pagination
+        const pageBtns = document.querySelectorAll('.page-btn');
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                pageBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchBtn = document.querySelector('button .fa-search').parentElement;
+        
+        searchBtn.addEventListener('click', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm.trim() !== '') {
+                alert(`Searching for: "${searchTerm}"\n\nThis feature will be fully functional when the blog launches with actual content.`);
+                searchInput.value = '';
+            }
+        });
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const searchTerm = searchInput.value.toLowerCase();
+                if (searchTerm.trim() !== '') {
+                    alert(`Searching for: "${searchTerm}"\n\nThis feature will be fully functional when the blog launches with actual content.`);
+                    searchInput.value = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
