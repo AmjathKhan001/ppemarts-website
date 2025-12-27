@@ -19,6 +19,7 @@ Allow: /tools-explore.html
 Allow: /privacy-policy.html
 Allow: /terms-of-use.html
 Allow: /affiliate-disclosure.html
+Allow: /contact.html
 Allow: /sitemap.html
 
 # Allow CSS and JavaScript
