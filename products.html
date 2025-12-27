@@ -411,7 +411,7 @@
                     <li class="nav-item"><a href="tools-explore.html" class="nav-link">Explore Tools</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="about-us.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-toggle" id="navToggle">
@@ -468,20 +468,7 @@
                             <!-- Categories will be populated by JavaScript -->
                         </div>
                     </div>
-                    
-                    <div class="filter-section">
-                        <h3>Price Range</h3>
-                        <div class="price-filter">
-                            <div style="margin-bottom: 15px;">
-                                <input type="range" id="priceRange" min="0" max="500" value="500" style="width: 100%;">
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span id="minPrice">$0</span>
-                                <span id="maxPrice">$500+</span>
-                            </div>
-                        </div>
-                    </div>
-                    
+                                                      
                     <div class="filter-section">
                         <h3>Brand</h3>
                         <div class="filter-options" id="brandFilters">
@@ -534,8 +521,6 @@
                                 <label for="sortSelect">Sort by:</label>
                                 <select id="sortSelect" class="sort-select" onchange="sortProducts()">
                                     <option value="featured">Featured</option>
-                                    <option value="price-low">Price: Low to High</option>
-                                    <option value="price-high">Price: High to Low</option>
                                     <option value="rating">Customer Rating</option>
                                     <option value="newest">Newest Arrivals</option>
                                 </select>
@@ -670,7 +655,6 @@
                 affiliateLink: "https://amzn.to/4bcAm6e",
                 description: "Complete PPE kit for full body protection including gown, mask, gloves, and face shield",
                 rating: 4.5,
-                price: 49.99,
                 features: ["Full Body Coverage", "Disposable", "Multi-layer Protection", "Comfort Fit"],
                 badge: "Bestseller"
             },
@@ -683,7 +667,6 @@
                 affiliateLink: "https://amzn.to/4s4Fr6K",
                 description: "Gas mask with respirator for chemical protection with replaceable filters",
                 rating: 4.3,
-                price: 89.99,
                 features: ["Chemical Protection", "Replaceable Filters", "Adjustable Straps", "Wide Visor"],
                 badge: "Industrial"
             },
@@ -696,7 +679,6 @@
                 affiliateLink: "https://amzn.to/49rqlRr",
                 description: "Disposable protective gown for medical use with fluid resistance",
                 rating: 4.2,
-                price: 24.99,
                 features: ["Fluid Resistant", "Disposable", "Breathable", "Multiple Sizes"],
                 badge: "Medical"
             },
@@ -709,7 +691,6 @@
                 affiliateLink: "https://amzn.to/4jh3StM",
                 description: "Full body harness for fall protection with padding and multiple attachment points",
                 rating: 4.7,
-                price: 129.99,
                 features: ["Full Body", "Padded Straps", "5 Attachment Points", "Adjustable"],
                 badge: "Premium"
             },
@@ -722,7 +703,6 @@
                 affiliateLink: "https://amzn.to/494Ws89",
                 description: "Premium safety harness with extra comfort padding and quick-connect buckles",
                 rating: 4.8,
-                price: 149.99,
                 features: ["Premium Padding", "Quick Connect", "Ergonomic Design", "Lightweight"],
                 badge: "Top Rated"
             },
@@ -735,7 +715,6 @@
                 affiliateLink: "https://amzn.to/4qwnnkB",
                 description: "Adjustable harness for work positioning with side D-rings",
                 rating: 4.4,
-                price: 119.99,
                 features: ["Work Positioning", "Side D-Rings", "Adjustable Leg Straps", "Comfort Back Pad"],
                 badge: null
             },
@@ -748,7 +727,6 @@
                 affiliateLink: "https://amzn.to/4pby4Ic",
                 description: "Steel inch measuring tape for safety measurements with durable case",
                 rating: 4.6,
-                price: 12.99,
                 features: ["5m Length", "Steel Blade", "Magnetic Tip", "Durable Case"],
                 badge: null
             },
@@ -761,7 +739,6 @@
                 affiliateLink: "https://amzn.to/3YfB5fs",
                 description: "Full body fall protection harness with belt and lanyard",
                 rating: 4.5,
-                price: 109.99,
                 features: ["Belt Included", "Shock Absorbing", "Multiple Sizes", "Certified"],
                 badge: null
             },
@@ -774,7 +751,6 @@
                 affiliateLink: "https://amzn.to/4p9GqQo",
                 description: "Climbing rope with safety hooks for outdoor and industrial use",
                 rating: 4.3,
-                price: 89.99,
                 features: ["Static Rope", "2 Safety Hooks", "UV Resistant", "10m Length"],
                 badge: "Outdoor"
             },
@@ -787,7 +763,6 @@
                 affiliateLink: "https://amzn.to/3YI7QSz",
                 description: "Adjustable half body safety belt for men with tool loops",
                 rating: 4.2,
-                price: 69.99,
                 features: ["Half Body", "Tool Loops", "Adjustable", "Padded Waist"],
                 badge: null
             },
@@ -801,7 +776,6 @@
                 affiliateLink: "#",
                 description: "Anti-fog safety goggles with UV protection",
                 rating: 4.4,
-                price: 19.99,
                 features: ["Anti-Fog", "UV Protection", "Adjustable", "Comfort Fit"],
                 badge: null
             },
@@ -814,7 +788,6 @@
                 affiliateLink: "#",
                 description: "Industrial safety helmet with chin strap",
                 rating: 4.6,
-                price: 29.99,
                 features: ["ABS Material", "Chin Strap", "Ventilation", "Adjustable"],
                 badge: "Bestseller"
             },
@@ -827,7 +800,6 @@
                 affiliateLink: "#",
                 description: "Steel toe safety shoes with slip resistance",
                 rating: 4.5,
-                price: 79.99,
                 features: ["Steel Toe", "Slip Resistant", "Waterproof", "Comfort Insole"],
                 badge: null
             },
@@ -840,7 +812,6 @@
                 affiliateLink: "#",
                 description: "Nitrile gloves box of 100 pieces",
                 rating: 4.7,
-                price: 34.99,
                 features: ["Nitrile", "Powder Free", "Latex Free", "100 Pieces"],
                 badge: "Medical"
             },
@@ -853,7 +824,6 @@
                 affiliateLink: "#",
                 description: "Reusable face shield visor",
                 rating: 4.3,
-                price: 14.99,
                 features: ["Reusable", "Anti-Fog", "Adjustable", "Lightweight"],
                 badge: null
             }
@@ -1031,7 +1001,7 @@
                     
                     <div class="product-actions">
                         <a href="${product.affiliateLink}" target="_blank" class="btn btn-buy">
-                            <i class="fas fa-shopping-cart"></i> Buy Now on Amazon
+                            <i class="fas fa-shopping-cart"></i> Buy Now 
                         </a>
                     </div>
                 </div>
