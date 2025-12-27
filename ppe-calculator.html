@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPE Calculator - Calculate Your Personal Protective Equipment Requirements</title>
+    <meta name="description" content="Free PPE calculator tool to determine exact Personal Protective Equipment requirements for your workforce. Get customized recommendations.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Calculator-specific CSS -->
+    <style>
+        .calculator-hero {
+            background: linear-gradient(135deg, rgba(0, 153, 229, 0.1) 0%, rgba(52, 191, 73, 0.1) 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        
+        .advanced-calculator {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .calculator-input-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .calculator-results-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #0099e5;
+            box-shadow: 0 0 0 3px rgba(0, 153, 229, 0.1);
+        }
+        
+        .ppe-categories {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid #34bf49;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-item.active {
+            background: #e3f2fd;
+            border: 1px solid #0099e5;
+        }
+        
+        .category-item:hover:not(.active) {
+            background: #e9ecef;
+        }
+        
+        .ppe-items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .ppe-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .ppe-item-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .ppe-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0099e5;
+        }
+        
+        .ppe-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-input {
+            width: 70px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .results-summary {
+            background: #f8fff9;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #34bf49;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .results-table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .results-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recommended-products {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .product-rec {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .product-rec-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.5rem;
+        }
+        
+        .product-rec-info {
+            flex: 1;
+        }
+        
+        @media (max-width: 992px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid,
+            .ppe-items-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-376208036"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-376208036');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6687860250561653" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/logo.png" alt="PPE Marts Logo" class="logo-img">
+                        <span class="logo-text">PPE Marts</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">PPE Products</a></li>
+                    <li class="nav-item"><a href="ppe-calculator.html" class="nav-link active">PPE Calculator</a></li>
+                    <li class="nav-item"><a href="tools-explore.html" class="nav-link">Explore Tools</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="about-us.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Calculator Hero -->
+    <section class="calculator-hero">
+        <div class="container">
+            <h1 class="hero-title">PPE Requirements Calculator</h1>
+            <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto 30px;">
+                Calculate exact Personal Protective Equipment needs for your workforce. Get customized recommendations.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="calculatorVisitors">1,234</span>
+                    <span class="stat-label">Calculations Today</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99%</span>
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">PPE Items</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Calculator -->
+    <section class="advanced-calculator">
+        <div class="container">
+            <div class="calculator-container">
+                <!-- Input Section -->
+                <div class="calculator-input-section">
+                    <h2 style="color: #0099e5; margin-bottom: 30px;">Enter Your Requirements</h2>
+                    
+                    <div class="input-group">
+                        <label for="companyName">Company/Project Name</label>
+                        <input type="text" id="companyName" class="input-field" placeholder="e.g., ABC Construction Site">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <div class="input-group">
+                            <label for="workers">Number of Workers</label>
+                            <input type="number" id="workers" class="input-field" min="1" max="10000" value="10">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="workDays">Work Days Per Month</label>
+                            <input type="number" id="workDays" class="input-field" min="1" max="31" value="22">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="workHours">Daily Work Hours</label>
+                        <input type="number" id="workHours" class="input-field" min="1" max="24" value="8">
+                    </div>
+                    
+                    <!-- Industry Selection -->
+                    <div class="input-group">
+                        <label>Industry Type</label>
+                        <select id="industryType" class="input-field">
+                            <option value="construction">Construction</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="logistics">Logistics/Warehouse</option>
+                            <option value="oilgas">Oil & Gas</option>
+                            <option value="chemical">Chemical Industry</option>
+                            <option value="mining">Mining</option>
+                            <option value="other">Other Industry</option>
+                        </select>
+                    </div>
+                    
+                    <!-- PPE Categories -->
+                    <div class="ppe-categories">
+                        <h3 style="margin-bottom: 15px; color: #333;">Select PPE Categories Needed</h3>
+                        <div class="category-grid" id="categoryGrid">
+                            <div class="category-item" data-category="head">
+                                <i class="fas fa-hard-hat"></i>
+                                <span>Head Protection</span>
+                            </div>
+                            <div class="category-item" data-category="eye">
+                                <i class="fas fa-glasses"></i>
+                                <span>Eye Protection</span>
+                            </div>
+                            <div class="category-item" data-category="respiratory">
+                                <i class="fas fa-lungs"></i>
+                                <span>Respiratory</span>
+                            </div>
+                            <div class="category-item" data-category="hand">
+                                <i class="fas fa-hand-paper"></i>
+                                <span>Hand Protection</span>
+                            </div>
+                            <div class="category-item" data-category="body">
+                                <i class="fas fa-user-shield"></i>
+                                <span>Body Protection</span>
+                            </div>
+                            <div class="category-item" data-category="foot">
+                                <i class="fas fa-shoe-prints"></i>
+                                <span>Foot Protection</span>
+                            </div>
+                            <div class="category-item" data-category="fall">
+                                <i class="fas fa-hiking"></i>
+                                <span>Fall Protection</span>
+                            </div>
+                            <div class="category-item" data-category="hearing">
+                                <i class="fas fa-assistive-listening-systems"></i>
+                                <span>Hearing Protection</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Detailed PPE Items -->
+                    <div class="ppe-items-section" id="ppeItemsSection">
+                        <h3 style="margin-bottom: 20px; color: #333;">Specify PPE Items & Quantities</h3>
+                        <div class="ppe-items-grid" id="ppeItemsGrid">
+                            <!-- PPE items will be dynamically added here -->
+                        </div>
+                    </div>
+                    
+                    <button id="calculateBtn" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1.1rem; margin-top: 20px;">
+                        <i class="fas fa-calculator"></i> Calculate PPE Requirements
+                    </button>
+                    
+                    <button id="resetBtn" class="btn btn-secondary" style="width: 100%; padding: 16px; font-size: 1rem; margin-top: 15px;">
+                        <i class="fas fa-redo"></i> Reset Calculator
+                    </button>
+                </div>
+                
+                <!-- Results Section -->
+                <div class="calculator-results-section">
+                    <h2 style="color: #34bf49; margin-bottom: 30px;">Calculation Results</h2>
+                    
+                    <div id="resultsPlaceholder">
+                        <div style="text-align: center; padding: 40px 20px;">
+                            <i class="fas fa-calculator" style="font-size: 3rem; color: #ddd; margin-bottom: 20px;"></i>
+                            <h3 style="color: #666; margin-bottom: 15px;">No Calculation Yet</h3>
+                            <p style="color: #888;">Enter your requirements on the left and click "Calculate" to see results.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="resultsContainer" style="display: none;">
+                        <!-- Project Summary -->
+                        <div class="results-summary">
+                            <h3 style="color: #34bf49; margin-bottom: 15px;" id="projectTitle">Project Requirements</h3>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                                <div>
+                                    <p style="color: #666; font-size: 0.9rem;">Workers</p>
+                                    <p style="font-weight: 600; font-size: 1.2rem;" id="resultWorkers">10</p>
+                                </div>
+                                <div>
+                                    <p style="color: #666; font-size: 0.9rem;">Work Days/Month</p>
+                                    <p style="font-weight: 600; font-size: 1.2rem;" id="resultDays">22</p>
+                                </div>
+                                <div>
+                                    <p style="color: #666; font-size: 0.9rem;">Industry</p>
+                                    <p style="font-weight: 600; font-size: 1.2rem;" id="resultIndustry">Construction</p>
+                                </div>
+                                <div>
+                                    <p style="color: #666; font-size: 0.9rem;">Total Items</p>
+                                    <p style="font-weight: 600; font-size: 1.2rem;" id="resultTotalItems">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Results Table -->
+                        <h3 style="margin: 30px 0 15px; color: #333;">Detailed Requirements</h3>
+                        <div class="table-responsive">
+                            <table class="results-table" id="resultsTable">
+                                <thead>
+                                    <tr>
+                                        <th>PPE Item</th>
+                                        <th>Unit</th>
+                                        <th>Daily</th>
+                                        <th>Monthly</th>
+                                        <th>Annual</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsTableBody">
+                                    <!-- Results rows will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Recommended Products -->
+                        <div class="recommended-products">
+                            <h3 style="color: #ff4c4c; margin-bottom: 20px;">
+                                <i class="fas fa-shopping-cart"></i> Recommended Products
+                            </h3>
+                            <p style="color: #666; margin-bottom: 20px;">Based on your requirements, here are recommended PPE products:</p>
+                            
+                            <div class="products-grid" id="recommendedProducts">
+                                <!-- Recommended products will be added here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: 15px; margin-top: 30px;">
+                            <button id="printBtn" class="btn btn-secondary" style="flex: 1;">
+                                <i class="fas fa-print"></i> Print Report
+                            </button>
+                            <button id="saveBtn" class="btn btn-primary" style="flex: 1;">
+                                <i class="fas fa-save"></i> Save Calculation
+                            </button>
+                            <button id="shareBtn" class="btn" style="flex: 1; background: #34bf49; color: white;">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Calculator Tips -->
+            <div style="margin-top: 60px; background: #f8f9fa; padding: 40px; border-radius: 10px;">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #0099e5;">
+                    <i class="fas fa-lightbulb"></i> PPE Calculator Tips
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                    <div style="text-align: center;">
+                        <div style="background: #0099e5; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Accurate Worker Count</h4>
+                        <p style="color: #666; font-size: 0.95rem;">Include all workers who need PPE, including temporary staff.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #34bf49; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Replacement Frequency</h4>
+                        <p style="color: #666; font-size: 0.95rem;">Consider replacement needs for disposable items like gloves and masks.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #ff4c4c; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h4>Industry Standards</h4>
+                        <p style="color: #666; font-size: 0.95rem;">Select correct industry type for appropriate PPE recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="PPE Marts" class="footer-logo-img">
+                        <h3>PPE Marts</h3>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted marketplace for Personal Protective Equipment and safety calculation tools.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/amjikhan" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/amjathkhan_official" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank" class="social-link">
+                            <i class="fas fa-feather"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">PPE Products</a></li>
+                        <li><a href="ppe-calculator.html">PPE Calculator</a></li>
+                        <li><a href="tools-explore.html">Explore Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-use.html">Terms of Use</a></li>
+                        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact@amjathkhan.com</p>
+                        <p><i class="fas fa-phone"></i> +91-9750816163</p>
+                        <p><i class="fas fa-globe"></i> <a href="https://www.amjathkhan.com" target="_blank">www.amjathkhan.com</a></p>
+                    </div>
+                    
+                    <div class="coffee-section">
+                        <p>Support our work:</p>
+                        <a href="https://buymeacoffee.com/s.amjathkhan" target="_blank" class="coffee-btn">
+                            <i class="fas fa-coffee"></i> Buy Me a Coffee
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="visitor-counter">
+                    <i class="fas fa-eye"></i> 
+                    <span>Website Visitors: <span id="totalVisitors">2,847</span></span>
+                </div>
+                <p class="copyright">&copy; 2024 PPE Marts. All rights reserved.</p>
+                <div class="footer-badges">
+                    <span class="badge">Mobile Friendly</span>
+                    <span class="badge">SSL Secure</span>
+                    <span class="badge">Ad Compliant</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // PPE Calculator Data
+        const ppeItemsData = {
+            head: [
+                { id: 'helmet', name: 'Safety Helmet', unit: 'pieces', dailyPerWorker: 0.05, icon: 'hard-hat' },
+                { id: 'bumpcap', name: 'Bump Cap', unit: 'pieces', dailyPerWorker: 0.03, icon: 'hat-cowboy' }
+            ],
+            eye: [
+                { id: 'goggles', name: 'Safety Goggles', unit: 'pairs', dailyPerWorker: 0.1, icon: 'glasses' },
+                { id: 'faceshield', name: 'Face Shield', unit: 'pieces', dailyPerWorker: 0.05, icon: 'shield-alt' }
+            ],
+            respiratory: [
+                { id: 'mask', name: 'Face Mask', unit: 'pieces', dailyPerWorker: 2, icon: 'head-side-mask' },
+                { id: 'respirator', name: 'Respirator', unit: 'pieces', dailyPerWorker: 0.2, icon: 'lungs' }
+            ],
+            hand: [
+                { id: 'gloves', name: 'Safety Gloves', unit: 'pairs', dailyPerWorker: 2, icon: 'hand-paper' },
+                { id: 'cutgloves', name: 'Cut-Resistant Gloves', unit: 'pairs', dailyPerWorker: 0.1, icon: 'hand-scissors' }
+            ],
+            body: [
+                { id: 'coverall', name: 'Coverall', unit: 'pieces', dailyPerWorker: 0.2, icon: 'tshirt' },
+                { id: 'apron', name: 'Safety Apron', unit: 'pieces', dailyPerWorker: 0.3, icon: 'user-shield' }
+            ],
+            foot: [
+                { id: 'safetyboots', name: 'Safety Boots', unit: 'pairs', dailyPerWorker: 0.02, icon: 'shoe-prints' },
+                { id: 'safetyshoes', name: 'Safety Shoes', unit: 'pairs', dailyPerWorker: 0.03, icon: 'socks' }
+            ],
+            fall: [
+                { id: 'harness', name: 'Safety Harness', unit: 'pieces', dailyPerWorker: 0.01, icon: 'hiking' },
+                { id: 'lanyard', name: 'Safety Lanyard', unit: 'pieces', dailyPerWorker: 0.02, icon: 'link' }
+            ],
+            hearing: [
+                { id: 'earplug', name: 'Ear Plugs', unit: 'pairs', dailyPerWorker: 2, icon: 'assistive-listening-systems' },
+                { id: 'earmuff', name: 'Ear Muffs', unit: 'pieces', dailyPerWorker: 0.05, icon: 'headphones' }
+            ]
+        };
+
+        // Recommended products data
+        const recommendedProducts = {
+            helmet: [
+                { name: 'Premium Safety Helmet', category: 'Head Protection', link: 'https://amzn.to/4p9GqQo', price: '$25-50' },
+                { name: 'Industrial Hard Hat', category: 'Head Protection', link: 'https://amzn.to/494Ws89', price: '$30-60' }
+            ],
+            gloves: [
+                { name: 'Nitrile Safety Gloves', category: 'Hand Protection', link: 'https://amzn.to/49rqlRr', price: '$15-30 per box' },
+                { name: 'Cut-Resistant Gloves', category: 'Hand Protection', link: 'https://amzn.to/4bcAm6e', price: '$20-40 per pair' }
+            ],
+            mask: [
+                { name: 'N95 Face Masks', category: 'Respiratory', link: 'https://amzn.to/4s4Fr6K', price: '$20-50 per box' },
+                { name: 'Surgical Masks', category: 'Respiratory', link: 'https://amzn.to/4pby4Ic', price: '$15-40 per box' }
+            ],
+            harness: [
+                { name: 'Full Body Safety Harness', category: 'Fall Protection', link: 'https://amzn.to/4jh3StM', price: '$80-150' },
+                { name: 'Adjustable Safety Harness', category: 'Fall Protection', link: 'https://amzn.to/3YfB5fs', price: '$70-130' }
+            ]
+        };
+
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalculator();
+            setupEventListeners();
+            updateVisitorCount();
+        });
+
+        function initializeCalculator() {
+            // Set default active categories
+            const defaultCategories = ['head', 'hand', 'respiratory'];
+            defaultCategories.forEach(cat => {
+                const categoryEl = document.querySelector(`[data-category="${cat}"]`);
+                if (categoryEl) {
+                    categoryEl.classList.add('active');
+                }
+            });
+            
+            // Load default PPE items
+            updatePPEItemsGrid();
+            
+            // Initialize visitor count
+            const calcVisitors = document.getElementById('calculatorVisitors');
+            const today = new Date().toDateString();
+            const stored = localStorage.getItem(`calcVisitors_${today}`);
+            calcVisitors.textContent = stored ? parseInt(stored).toLocaleString() : '1,234';
+        }
+
+        function updatePPEItemsGrid() {
+            const grid = document.getElementById('ppeItemsGrid');
+            const activeCategories = Array.from(document.querySelectorAll('.category-item.active'))
+                .map(el => el.getAttribute('data-category'));
+            
+            grid.innerHTML = '';
+            
+            activeCategories.forEach(category => {
+                if (ppeItemsData[category]) {
+                    ppeItemsData[category].forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'ppe-item';
+                        itemEl.innerHTML = `
+                            <div class="ppe-item-info">
+                                <div class="ppe-item-icon">
+                                    <i class="fas fa-${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 500;">${item.name}</div>
+                                    <div style="font-size: 0.85rem; color: #666;">Unit: ${item.unit}</div>
+                                </div>
+                            </div>
+                            <div class="ppe-item-controls">
+                                <input type="number" 
+                                       class="quantity-input" 
+                                       data-item="${item.id}"
+                                       min="0" 
+                                       max="10" 
+                                       step="0.1"
+                                       value="${item.dailyPerWorker}"
+                                       onchange="updateItemQuantity('${item.id}', this.value)">
+                                <span style="color: #666; font-size: 0.9rem;">per worker/day</span>
+                            </div>
+                        `;
+                        grid.appendChild(itemEl);
+                    });
+                }
+            });
+            
+            // Show/hide items section based on selection
+            const itemsSection = document.getElementById('ppeItemsSection');
+            itemsSection.style.display = activeCategories.length > 0 ? 'block' : 'none';
+        }
+
+        function updateItemQuantity(itemId, value) {
+            // Update the item quantity in data
+            for (const category in ppeItemsData) {
+                const item = ppeItemsData[category].find(i => i.id === itemId);
+                if (item) {
+                    item.dailyPerWorker = parseFloat(value) || 0;
+                    break;
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            // Category selection
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    updatePPEItemsGrid();
+                });
+            });
+            
+            // Calculate button
+            document.getElementById('calculateBtn').addEventListener('click', calculateRequirements);
+            
+            // Reset button
+            document.getElementById('resetBtn').addEventListener('click', resetCalculator);
+            
+            // Print button
+            document.getElementById('printBtn').addEventListener('click', printReport);
+            
+            // Save button
+            document.getElementById('saveBtn').addEventListener('click', saveCalculation);
+            
+            // Share button
+            document.getElementById('shareBtn').addEventListener('click', shareCalculation);
+            
+            // Update calculator visitors
+            updateCalculatorVisitors();
+        }
+
+        function calculateRequirements() {
+            const workers = parseInt(document.getElementById('workers').value) || 10;
+            const workDays = parseInt(document.getElementById('workDays').value) || 22;
+            const workHours = parseInt(document.getElementById('workHours').value) || 8;
+            const companyName = document.getElementById('companyName').value || 'Your Project';
+            const industry = document.getElementById('industryType').value;
+            
+            // Update project summary
+            document.getElementById('projectTitle').textContent = `${companyName} - PPE Requirements`;
+            document.getElementById('resultWorkers').textContent = workers;
+            document.getElementById('resultDays').textContent = workDays;
+            document.getElementById('resultIndustry').textContent = 
+                document.getElementById('industryType').options[document.getElementById('industryType').selectedIndex].text;
+            
+            // Calculate requirements
+            const activeCategories = Array.from(document.querySelectorAll('.category-item.active'))
+                .map(el => el.getAttribute('data-category'));
+            
+            let totalItems = 0;
+            const results = [];
+            
+            activeCategories.forEach(category => {
+                if (ppeItemsData[category]) {
+                    ppeItemsData[category].forEach(item => {
+                        const dailyQty = workers * item.dailyPerWorker;
+                        const monthlyQty = Math.ceil(dailyQty * workDays);
+                        const annualQty = Math.ceil(monthlyQty * 12);
+                        
+                        totalItems += monthlyQty;
+                        
+                        results.push({
+                            name: item.name,
+                            unit: item.unit,
+                            daily: Math.ceil(dailyQty),
+                            monthly: monthlyQty,
+                            annual: annualQty,
+                            itemId: item.id
+                        });
+                    });
+                }
+            });
+            
+            // Update total items
+            document.getElementById('resultTotalItems').textContent = totalItems.toLocaleString();
+            
+            // Update results table
+            const tableBody = document.getElementById('resultsTableBody');
+            tableBody.innerHTML = '';
+            
+            results.forEach(result => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${result.name}</td>
+                    <td>${result.unit}</td>
+                    <td>${result.daily.toLocaleString()}</td>
+                    <td>${result.monthly.toLocaleString()}</td>
+                    <td>${result.annual.toLocaleString()}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Show recommended products
+            showRecommendedProducts(results);
+            
+            // Show results container
+            document.getElementById('resultsPlaceholder').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            // Increment calculation counter
+            incrementCalculatorCount();
+            
+            // Scroll to results
+            document.querySelector('.calculator-results-section').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        function showRecommendedProducts(results) {
+            const productsGrid = document.getElementById('recommendedProducts');
+            productsGrid.innerHTML = '';
+            
+            // Collect unique product categories from results
+            const categories = new Set();
+            results.forEach(result => {
+                if (result.itemId === 'helmet' || result.itemId === 'gloves' || 
+                    result.itemId === 'mask' || result.itemId === 'harness') {
+                    categories.add(result.itemId);
+                }
+            });
+            
+            // Add fallback recommendations if no specific matches
+            if (categories.size === 0) {
+                categories.add('helmet');
+                categories.add('gloves');
+            }
+            
+            // Show up to 4 recommended products
+            let productCount = 0;
+            categories.forEach(category => {
+                if (recommendedProducts[category] && productCount < 4) {
+                    recommendedProducts[category].forEach(product => {
+                        if (productCount < 4) {
+                            const productEl = document.createElement('div');
+                            productEl.className = 'product-rec';
+                            productEl.innerHTML = `
+                                <div class="product-rec-image">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <div class="product-rec-info">
+                                    <div style="font-weight: 500; margin-bottom: 5px;">${product.name}</div>
+                                    <div style="font-size: 0.85rem; color: #666; margin-bottom: 8px;">${product.category}</div>
+                                    <div style="font-size: 0.9rem; color: #ff4c4c; font-weight: 500; margin-bottom: 10px;">${product.price}</div>
+                                    <a href="${product.link}" target="_blank" class="btn" style="padding: 6px 15px; font-size: 0.85rem; background: #0099e5; color: white;">
+                                        <i class="fas fa-shopping-cart"></i> Buy Now
+                                    </a>
+                                </div>
+                            `;
+                            productsGrid.appendChild(productEl);
+                            productCount++;
+                        }
+                    });
+                }
+            });
+        }
+
+        function resetCalculator() {
+            // Reset form values
+            document.getElementById('companyName').value = '';
+            document.getElementById('workers').value = '10';
+            document.getElementById('workDays').value = '22';
+            document.getElementById('workHours').value = '8';
+            document.getElementById('industryType').value = 'construction';
+            
+            // Reset categories
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Set default categories
+            ['head', 'hand', 'respiratory'].forEach(cat => {
+                const categoryEl = document.querySelector(`[data-category="${cat}"]`);
+                if (categoryEl) categoryEl.classList.add('active');
+            });
+            
+            // Reset results
+            document.getElementById('resultsPlaceholder').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
+            
+            // Update PPE items grid
+            updatePPEItemsGrid();
+            
+            // Reset item quantities to defaults
+            for (const category in ppeItemsData) {
+                ppeItemsData[category].forEach(item => {
+                    // Reset to original values
+                    if (item.id === 'helmet') item.dailyPerWorker = 0.05;
+                    if (item.id === 'mask') item.dailyPerWorker = 2;
+                    if (item.id === 'gloves') item.dailyPerWorker = 2;
+                    if (item.id === 'harness') item.dailyPerWorker = 0.01;
+                    // ... reset other items
+                });
+            }
+            
+            // Reset quantity inputs
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                const itemId = input.getAttribute('data-item');
+                const item = findPPEItem(itemId);
+                if (item) {
+                    input.value = item.dailyPerWorker;
+                }
+            });
+        }
+
+        function findPPEItem(itemId) {
+            for (const category in ppeItemsData) {
+                const item = ppeItemsData[category].find(i => i.id === itemId);
+                if (item) return item;
+            }
+            return null;
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        function saveCalculation() {
+            const data = {
+                company: document.getElementById('companyName').value,
+                workers: document.getElementById('workers').value,
+                days: document.getElementById('workDays').value,
+                industry: document.getElementById('industryType').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('ppeCalculation_' + Date.now(), JSON.stringify(data));
+            
+            alert('Calculation saved successfully! You can access it later from this browser.');
+        }
+
+        function shareCalculation() {
+            const text = `Check out my PPE requirements calculated using PPE Marts calculator!`;
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'PPE Calculation Results',
+                    text: text,
+                    url: url
+                });
+            } else {
+                // Fallback for browsers without Web Share API
+                navigator.clipboard.writeText(`${text}\n\n${url}`).then(() => {
+                    alert('Link copied to clipboard! Share it with your colleagues.');
+                });
+            }
+        }
+
+        function updateCalculatorVisitors() {
+            const today = new Date().toDateString();
+            const key = `calcVisitors_${today}`;
+            let count = parseInt(localStorage.getItem(key)) || 1234;
+            count += Math.floor(Math.random() * 10) + 1;
+            localStorage.setItem(key, count.toString());
+            
+            const calcVisitors = document.getElementById('calculatorVisitors');
+            calcVisitors.textContent = count.toLocaleString();
+        }
+
+        function incrementCalculatorCount() {
+            const today = new Date().toDateString();
+            const key = `calcVisitors_${today}`;
+            let count = parseInt(localStorage.getItem(key)) || 1234;
+            count++;
+            localStorage.setItem(key, count.toString());
+            
+            const calcVisitors = document.getElementById('calculatorVisitors');
+            calcVisitors.textContent = count.toLocaleString();
+        }
+
+        function updateVisitorCount() {
+            const totalVisitors = document.getElementById('totalVisitors');
+            
+            if (localStorage.getItem('ppemartsVisitors')) {
+                totalVisitors.textContent = parseInt(localStorage.getItem('ppemartsVisitors')).toLocaleString();
+            } else {
+                const baseVisitors = 2847;
+                totalVisitors.textContent = baseVisitors.toLocaleString();
+            }
+        }
+
+        // Update visitor count periodically
+        setInterval(() => {
+            const current = parseInt(localStorage.getItem('ppemartsVisitors') || '2847');
+            const increment = Math.floor(Math.random() * 5) + 1;
+            localStorage.setItem('ppemartsVisitors', (current + increment).toString());
+            document.getElementById('totalVisitors').textContent = (current + increment).toLocaleString();
+        }, 30 * 60 * 1000);
+    </script>
+</body>
+</html>
