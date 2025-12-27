@@ -337,6 +337,57 @@
             grid-column: 1 / -1;
         }
         
+        /* Product Action Buttons */
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-buy {
+            background: #ff4c4c;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn-buy:hover {
+            background: #ff3333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 76, 76, 0.3);
+        }
+        
+        /* Product Image Styling */
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
         @media (max-width: 1200px) {
             .products-grid-large {
                 grid-template-columns: repeat(2, 1fr);
@@ -766,7 +817,6 @@
                 features: ["Half Body", "Tool Loops", "Adjustable", "Padded Waist"],
                 badge: null
             },
-            // Additional sample products
             {
                 id: 11,
                 name: "Safety Goggles Anti-Fog",
@@ -854,9 +904,6 @@
             // Set up brand filters
             setupBrandFilters();
             
-            // Set up price range slider
-            setupPriceRange();
-            
             // Set up quick filters
             setupQuickFilters();
             
@@ -907,16 +954,6 @@
                     <span class="filter-count">${count}</span>
                 `;
                 container.appendChild(option);
-            });
-        }
-
-        function setupPriceRange() {
-            const priceRange = document.getElementById('priceRange');
-            const maxPrice = document.getElementById('maxPrice');
-            
-            priceRange.addEventListener('input', function() {
-                const value = this.value;
-                maxPrice.textContent = value === '500' ? '$500+' : `$${value}`;
             });
         }
 
@@ -997,11 +1034,9 @@
                         `).join('')}
                     </ul>
                     
-                    <div class="product-price">$${product.price.toFixed(2)}</div>
-                    
                     <div class="product-actions">
-                        <a href="${product.affiliateLink}" target="_blank" class="btn btn-buy">
-                            <i class="fas fa-shopping-cart"></i> Buy Now 
+                        <a href="${product.affiliateLink}" target="_blank" class="btn-buy">
+                            <i class="fas fa-shopping-cart"></i> View on Amazon
                         </a>
                     </div>
                 </div>
@@ -1038,7 +1073,6 @@
                 .map(cb => cb.value);
             const selectedRatings = Array.from(document.querySelectorAll('input[name="rating"]:checked'))
                 .map(cb => parseInt(cb.value));
-            const maxPrice = parseInt(document.getElementById('priceRange').value);
             
             let filteredProducts = allProducts;
             
@@ -1063,19 +1097,12 @@
                 );
             }
             
-            // Apply price filter
-            filteredProducts = filteredProducts.filter(product => product.price <= maxPrice);
-            
             loadProducts(filteredProducts);
         }
 
         function resetFilters() {
             // Uncheck all checkboxes
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-            
-            // Reset price range
-            document.getElementById('priceRange').value = 500;
-            document.getElementById('maxPrice').textContent = '$500+';
             
             // Reset search
             document.getElementById('productSearch').value = '';
@@ -1093,12 +1120,6 @@
             let sortedProducts = [...allProducts];
             
             switch(sortValue) {
-                case 'price-low':
-                    sortedProducts.sort((a, b) => a.price - b.price);
-                    break;
-                case 'price-high':
-                    sortedProducts.sort((a, b) => b.price - a.price);
-                    break;
                 case 'rating':
                     sortedProducts.sort((a, b) => b.rating - a.rating);
                     break;
