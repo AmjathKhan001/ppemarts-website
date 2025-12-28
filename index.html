@@ -781,5 +781,77 @@
             window.location.href = `mailto:?subject=${subject}&body=${body}`;
         }
     </script>
+    <!-- Load AI Assistant -->
+<script>
+  // Load AI Assistant widget
+  function loadAIAssistant() {
+    // Check if we're on a page where assistant should appear
+    const noAssistantPages = ['admin', 'login', 'register'];
+    const currentPath = window.location.pathname;
+    
+    if (noAssistantPages.some(page => currentPath.includes(page))) {
+      return; // Don't load on admin/login pages
+    }
+
+    // Create and inject the assistant HTML
+    const assistantDiv = document.createElement('div');
+    assistantDiv.id = 'aiAssistantLoader';
+    document.body.appendChild(assistantDiv);
+
+    // Fetch and inject the assistant code
+    fetch('/ai-assistant.html')
+      .then(response => response.text())
+      .then(html => {
+        assistantDiv.innerHTML = html;
+        
+        // Initialize the assistant
+        if (typeof AIAssistant === 'function') {
+          setTimeout(() => {
+            window.ppeAssistant = new AIAssistant();
+            console.log('AI Safety Assistant initialized');
+          }, 100);
+        }
+      })
+      .catch(error => {
+        console.warn('AI Assistant could not load:', error);
+        // Fallback: Create a simple assistant button
+        createFallbackAssistant();
+      });
+  }
+
+  function createFallbackAssistant() {
+    const fallbackHTML = `
+      <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+        <button onclick="window.open('/products.html?search=ppe', '_blank')" 
+                style="background: #0099e5; color: white; border: none; padding: 12px 20px; border-radius: 25px; 
+                       cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-robot"></i>
+          <span>AI Safety Assistant</span>
+        </button>
+      </div>
+    `;
+    
+    const container = document.createElement('div');
+    container.innerHTML = fallbackHTML;
+    document.body.appendChild(container);
+  }
+
+  // Load when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadAIAssistant);
+  } else {
+    loadAIAssistant();
+  }
+</script>
+
+<!-- Add Font Awesome if not already loaded -->
+<script>
+  if (!document.querySelector('link[href*="font-awesome"]')) {
+    const faLink = document.createElement('link');
+    faLink.rel = 'stylesheet';
+    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    document.head.appendChild(faLink);
+  }
+</script>
 </body>
 </html>
