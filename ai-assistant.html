@@ -1,0 +1,885 @@
+<!-- AI Safety Assistant Widget -->
+<div id="aiAssistantContainer">
+  <!-- Minimized State -->
+  <div id="aiAssistantMinimized" class="ai-assistant-minimized">
+    <div class="assistant-icon">
+      <i class="fas fa-robot"></i>
+      <div class="pulse-dot"></div>
+    </div>
+    <span class="assistant-text">AI Safety Assistant</span>
+    <button id="openAssistant" class="open-btn">
+      <i class="fas fa-comment"></i> Ask About PPE
+    </button>
+  </div>
+
+  <!-- Expanded Chat Interface -->
+  <div id="aiAssistantExpanded" class="ai-assistant-expanded" style="display: none;">
+    <div class="assistant-header">
+      <div class="header-left">
+        <div class="assistant-avatar">
+          <i class="fas fa-robot"></i>
+          <div class="status-dot online"></div>
+        </div>
+        <div>
+          <h3>PPE Safety Assistant</h3>
+          <p class="subtitle">Certified AI Safety Expert</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <button id="minimizeAssistant" class="icon-btn" title="Minimize">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button id="closeAssistant" class="icon-btn" title="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Messages Container -->
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages will be inserted here -->
+    </div>
+
+    <!-- Quick Questions -->
+    <div class="quick-questions" id="quickQuestions">
+      <p>Quick Questions:</p>
+      <div class="quick-buttons">
+        <button class="quick-btn" data-question="What PPE is required for construction work?">
+          <i class="fas fa-hard-hat"></i> Construction PPE
+        </button>
+        <button class="quick-btn" data-question="Show me the best safety gloves">
+          <i class="fas fa-hand-paper"></i> Safety Gloves
+        </button>
+        <button class="quick-btn" data-question="What are OSHA requirements for fall protection?">
+          <i class="fas fa-user-shield"></i> OSHA Rules
+        </button>
+        <button class="quick-btn" data-question="Recommend respiratory protection for woodworking">
+          <i class="fas fa-lungs"></i> Respiratory PPE
+        </button>
+      </div>
+    </div>
+
+    <!-- User Input -->
+    <div class="user-input-container">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="userMessage" 
+          placeholder="Ask about PPE, safety gear, or regulations..."
+          autocomplete="off"
+        >
+        <button id="sendMessage" class="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+      <div class="input-hints">
+        <span>Try: "Best safety shoes for electricians" or "PPE for chemical handling"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI Assistant CSS -->
+<style>
+  /* AI Assistant Container */
+  #aiAssistantContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Minimized State */
+  .ai-assistant-minimized {
+    background: linear-gradient(135deg, #0099e5 0%, #0066cc 100%);
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 153, 229, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    animation: pulse-glow 2s infinite;
+  }
+
+  .ai-assistant-minimized:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 153, 229, 0.4);
+  }
+
+  .assistant-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0099e5;
+    font-size: 1.2rem;
+  }
+
+  .pulse-dot {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 12px;
+    height: 12px;
+    background: #ff4c4c;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  .assistant-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .open-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .open-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Expanded State */
+  .ai-assistant-expanded {
+    width: 400px;
+    max-height: 600px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slide-up 0.3s ease;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Header */
+  .assistant-header {
+    background: linear-gradient(135deg, #0099e5 0%, #0066cc 100%);
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .assistant-avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .status-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: #34bf49;
+    border-radius: 50%;
+    border: 2px solid #0066cc;
+  }
+
+  .status-dot.online {
+    background: #34bf49;
+  }
+
+  .assistant-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
+
+  .icon-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Chat Messages */
+  .chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    max-height: 300px;
+  }
+
+  .message {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    animation: fade-in 0.3s ease;
+  }
+
+  .message.user {
+    justify-content: flex-end;
+  }
+
+  .message-bubble {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    position: relative;
+    word-wrap: break-word;
+  }
+
+  .message.assistant .message-bubble {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-bottom-left-radius: 5px;
+  }
+
+  .message.user .message-bubble {
+    background: #0099e5;
+    color: white;
+    border-bottom-right-radius: 5px;
+  }
+
+  .message-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .message.assistant .message-avatar {
+    background: #e9ecef;
+    color: #0099e5;
+  }
+
+  .message.user .message-avatar {
+    background: rgba(0, 153, 229, 0.1);
+    color: #0099e5;
+  }
+
+  /* Quick Questions */
+  .quick-questions {
+    padding: 15px 20px;
+    background: white;
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .quick-questions p {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .quick-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .quick-btn {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #333;
+  }
+
+  .quick-btn:hover {
+    background: #e9ecef;
+    border-color: #0099e5;
+    color: #0099e5;
+  }
+
+  /* User Input */
+  .user-input-container {
+    padding: 20px;
+    background: white;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    gap: 10px;
+  }
+
+  #userMessage {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  #userMessage:focus {
+    border-color: #0099e5;
+    box-shadow: 0 0 0 3px rgba(0, 153, 229, 0.1);
+  }
+
+  .send-btn {
+    width: 45px;
+    height: 45px;
+    background: #0099e5;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .send-btn:hover {
+    background: #0077cc;
+    transform: scale(1.05);
+  }
+
+  .input-hints {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: #999;
+    text-align: center;
+  }
+
+  /* Product Recommendations */
+  .product-recommendations {
+    margin-top: 15px;
+    border-top: 1px solid #e9ecef;
+    padding-top: 15px;
+  }
+
+  .product-recommendations h4 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .recommended-product {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .recommended-product:hover {
+    border-color: #0099e5;
+    transform: translateY(-2px);
+  }
+
+  .recommended-product img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .recommended-product .product-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .recommended-product .product-link {
+    display: block;
+    background: #0099e5;
+    color: white;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .recommended-product .product-link:hover {
+    background: #0077cc;
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 10px 30px rgba(0, 153, 229, 0.3);
+    }
+    50% {
+      box-shadow: 0 10px 40px rgba(0, 153, 229, 0.5);
+    }
+    100% {
+      box-shadow: 0 10px 30px rgba(0, 153, 229, 0.3);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Typing Indicator */
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 15px;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #e9ecef;
+    width: fit-content;
+  }
+
+  .typing-dot {
+    width: 6px;
+    height: 6px;
+    background: #999;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes typing {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #aiAssistantContainer {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .ai-assistant-expanded {
+      width: calc(100vw - 20px);
+      max-height: 80vh;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .quick-buttons {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- AI Assistant JavaScript -->
+<script>
+  class AIAssistant {
+    constructor() {
+      this.conversationHistory = [];
+      this.initialized = false;
+      this.apiEndpoint = '/api/ai-assistant'; // We'll create this next
+      
+      this.initializeElements();
+      this.setupEventListeners();
+      this.loadConversation();
+      this.showWelcomeMessage();
+    }
+
+    initializeElements() {
+      this.elements = {
+        container: document.getElementById('aiAssistantContainer'),
+        minimized: document.getElementById('aiAssistantMinimized'),
+        expanded: document.getElementById('aiAssistantExpanded'),
+        openBtn: document.getElementById('openAssistant'),
+        minimizeBtn: document.getElementById('minimizeAssistant'),
+        closeBtn: document.getElementById('closeAssistant'),
+        chatMessages: document.getElementById('chatMessages'),
+        userInput: document.getElementById('userMessage'),
+        sendBtn: document.getElementById('sendMessage'),
+        quickBtns: document.querySelectorAll('.quick-btn')
+      };
+    }
+
+    setupEventListeners() {
+      // Open/Close/Mininmize
+      this.elements.openBtn.addEventListener('click', () => this.expandAssistant());
+      this.elements.minimizeBtn.addEventListener('click', () => this.minimizeAssistant());
+      this.elements.closeBtn.addEventListener('click', () => this.closeAssistant());
+
+      // Send message
+      this.elements.sendBtn.addEventListener('click', () => this.sendUserMessage());
+      this.elements.userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') this.sendUserMessage();
+      });
+
+      // Quick questions
+      this.elements.quickBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const question = e.target.closest('.quick-btn').dataset.question;
+          this.sendQuickQuestion(question);
+        });
+      });
+    }
+
+    expandAssistant() {
+      this.elements.minimized.style.display = 'none';
+      this.elements.expanded.style.display = 'flex';
+      this.elements.userInput.focus();
+    }
+
+    minimizeAssistant() {
+      this.elements.expanded.style.display = 'none';
+      this.elements.minimized.style.display = 'flex';
+    }
+
+    closeAssistant() {
+      this.elements.expanded.style.display = 'none';
+      this.elements.minimized.style.display = 'flex';
+      this.saveConversation();
+    }
+
+    async sendUserMessage() {
+      const message = this.elements.userInput.value.trim();
+      if (!message) return;
+
+      this.addMessage(message, 'user');
+      this.elements.userInput.value = '';
+
+      // Show typing indicator
+      this.showTypingIndicator();
+
+      try {
+        const response = await this.getAIResponse(message);
+        this.removeTypingIndicator();
+        this.addMessage(response.text, 'assistant', response.recommendations);
+      } catch (error) {
+        this.removeTypingIndicator();
+        this.addMessage("I apologize, but I'm having trouble connecting. Please try again in a moment.", 'assistant');
+      }
+    }
+
+    sendQuickQuestion(question) {
+      this.elements.userInput.value = question;
+      this.sendUserMessage();
+    }
+
+    addMessage(text, sender, recommendations = null) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}`;
+
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      messageDiv.innerHTML = `
+        <div class="message-avatar">
+          ${sender === 'assistant' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>'}
+        </div>
+        <div class="message-content">
+          <div class="message-bubble">
+            ${text}
+            <div class="message-time">${time}</div>
+          </div>
+          ${recommendations ? this.createRecommendationsHTML(recommendations) : ''}
+        </div>
+      `;
+
+      this.elements.chatMessages.appendChild(messageDiv);
+      this.scrollToBottom();
+      
+      // Add to conversation history
+      this.conversationHistory.push({
+        sender,
+        text,
+        timestamp: new Date().toISOString()
+      });
+
+      // Limit history to last 20 messages
+      if (this.conversationHistory.length > 20) {
+        this.conversationHistory.shift();
+      }
+
+      this.saveConversation();
+    }
+
+    createRecommendationsHTML(recommendations) {
+      if (!recommendations || recommendations.length === 0) return '';
+
+      return `
+        <div class="product-recommendations">
+          <h4>Recommended Products:</h4>
+          <div class="recommendation-grid">
+            ${recommendations.map(product => `
+              <div class="recommended-product">
+                <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1584634731339-252c581abfc5?auto=format&fit=crop&w=150'">
+                <div class="product-name">${product.name.substring(0, 50)}${product.name.length > 50 ? '...' : ''}</div>
+                <a href="${product.affiliateLink}" target="_blank" class="product-link">
+                  <i class="fas fa-external-link-alt"></i> View on Amazon
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message assistant';
+      typingDiv.id = 'typingIndicator';
+      typingDiv.innerHTML = `
+        <div class="message-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      this.elements.chatMessages.appendChild(typingDiv);
+      this.scrollToBottom();
+    }
+
+    removeTypingIndicator() {
+      const typingIndicator = document.getElementById('typingIndicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    async getAIResponse(userMessage) {
+      // If API endpoint exists, use it
+      if (this.apiEndpoint) {
+        try {
+          const response = await fetch(this.apiEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              message: userMessage,
+              history: this.conversationHistory.slice(-5) // Send last 5 messages for context
+            })
+          });
+
+          if (response.ok) {
+            return await response.json();
+          }
+        } catch (error) {
+          console.warn('API call failed, using fallback response:', error);
+        }
+      }
+
+      // Fallback: Local response generation
+      return this.generateLocalResponse(userMessage);
+    }
+
+    generateLocalResponse(userMessage) {
+      const message = userMessage.toLowerCase();
+      let responseText = '';
+      let recommendations = [];
+
+      // Fallback responses for common queries
+      if (message.includes('construction') || message.includes('hard hat')) {
+        responseText = "For construction work, essential PPE includes: hard hat (ANSI Z89.1 certified), safety glasses, high-visibility vest, steel-toe boots, and gloves. Fall protection is required for work above 6 feet.";
+        recommendations = this.getProductsByCategory(['head', 'foot', 'hand']);
+      } else if (message.includes('glove') || message.includes('hand')) {
+        responseText = "Safety gloves vary by application: Nitrile for chemicals, cut-resistant for sharp materials, insulated for temperature extremes, and rubber for electrical work. Always match gloves to the specific hazard.";
+        recommendations = this.getProductsByCategory(['hand']);
+      } else if (message.includes('respirator') || message.includes('mask')) {
+        responseText = "Respiratory protection depends on contaminants: N95 for dust/pollen, half-face respirator for chemicals with appropriate filters, and full-face for eye/respiratory combination protection. Fit testing is crucial.";
+        recommendations = this.getProductsByCategory(['respiratory']);
+      } else if (message.includes('osha') || message.includes('regulation')) {
+        responseText = "OSHA requires employers to provide PPE when hazards exist that could cause injury. Key standards: 1910.132 (General PPE), 1910.133 (Eye/Face), 1910.134 (Respiratory), 1910.135 (Head), 1910.136 (Foot), and 1910.138 (Hand).";
+        recommendations = [];
+      } else if (message.includes('fall') || message.includes('harness')) {
+        responseText = "Fall protection systems must be used at 6+ feet height. Components include: full-body harness, shock-absorbing lanyard, anchor points rated for 5,000 lbs, and rescue plan. Regular inspection is mandatory.";
+        recommendations = this.getProductsByCategory(['fall']);
+      } else {
+        responseText = "I'm your PPE safety assistant! I can help with product recommendations, safety regulations, hazard assessments, and proper PPE selection. Try asking about specific equipment or safety scenarios.";
+        recommendations = this.getRandomProducts(3);
+      }
+
+      return {
+        text: responseText,
+        recommendations: recommendations
+      };
+    }
+
+    getProductsByCategory(categories) {
+      // Get products from global allProducts array (from products.html)
+      if (typeof allProducts !== 'undefined') {
+        return allProducts
+          .filter(product => categories.includes(product.category))
+          .slice(0, 4);
+      }
+      
+      // Fallback sample products if allProducts not available
+      return [
+        {
+          name: "Safety Helmet with Chin Strap",
+          image: "assets/images/products/safety-helmet.jpg",
+          affiliateLink: "#",
+          category: "head"
+        },
+        {
+          name: "Nitrile Gloves Box of 100",
+          image: "assets/images/products/nitrile-gloves.jpg",
+          affiliateLink: "#",
+          category: "hand"
+        }
+      ];
+    }
+
+    getRandomProducts(count) {
+      if (typeof allProducts !== 'undefined') {
+        return [...allProducts].sort(() => 0.5 - Math.random()).slice(0, count);
+      }
+      return [];
+    }
+
+    showWelcomeMessage() {
+      if (this.conversationHistory.length === 0) {
+        setTimeout(() => {
+          this.addMessage(
+            "Hello! I'm your AI Safety Assistant. I can help you with PPE recommendations, safety regulations, hazard assessments, and finding the right protective equipment for your needs. How can I assist you today?",
+            'assistant'
+          );
+        }, 1000);
+      }
+    }
+
+    scrollToBottom() {
+      this.elements.chatMessages.scrollTop = this.elements.chatMessages.scrollHeight;
+    }
+
+    saveConversation() {
+      try {
+        localStorage.setItem('ppeAssistantHistory', JSON.stringify(this.conversationHistory));
+      } catch (e) {
+        console.warn('Could not save conversation history:', e);
+      }
+    }
+
+    loadConversation() {
+      try {
+        const saved = localStorage.getItem('ppeAssistantHistory');
+        if (saved) {
+          this.conversationHistory = JSON.parse(saved);
+          
+          // Replay conversation
+          this.conversationHistory.forEach(msg => {
+            this.addMessage(msg.text, msg.sender);
+          });
+        }
+      } catch (e) {
+        console.warn('Could not load conversation history:', e);
+      }
+    }
+  }
+
+  // Initialize when page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      window.ppeAssistant = new AIAssistant();
+    }, 2000); // Delay slightly to allow page to load
+  });
+</script>
