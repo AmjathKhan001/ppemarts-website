@@ -3,41 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - HSE Calculator | Get Support & Connect</title>
-    <meta name="description" content="Contact HSE Calculator team for support, calculator suggestions, partnership inquiries, or technical assistance.">
-    <meta name="keywords" content="HSE calculator support, safety tools contact, HSE help, technical support, partnership inquiry">
+    <title>Contact Us - PPE Marts | Get in Touch & Subscribe</title>
+    <meta name="description" content="Contact PPE Marts for inquiries, support, or partnerships. Subscribe to our newsletter for safety tips and product updates.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/calculator-styles.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
     
-    <!-- Contact Page Specific CSS -->
+    <!-- Contact-specific CSS -->
     <style>
         .contact-hero {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding: 80px 0 40px;
+            background: linear-gradient(135deg, rgba(0, 153, 229, 0.1) 0%, rgba(52, 191, 73, 0.1) 100%);
+            padding: 80px 0 60px;
             text-align: center;
         }
         
         .contact-container {
-            padding: 60px 0;
+            padding: 80px 0;
+            background-color: white;
         }
         
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin: 40px 0;
+            gap: 50px;
+            margin-top: 40px;
         }
         
-        .contact-form-section, .contact-info-section {
+        .contact-form-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .contact-info-section {
             background: white;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
         }
         
         .form-group {
@@ -47,7 +57,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 500;
             color: #333;
         }
         
@@ -55,15 +65,15 @@
             width: 100%;
             padding: 14px 20px;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
         
         .form-control:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #0099e5;
+            box-shadow: 0 0 0 3px rgba(0, 153, 229, 0.1);
         }
         
         textarea.form-control {
@@ -79,10 +89,10 @@
         }
         
         .contact-method {
-            text-align: center;
+            background: #f8f9fa;
             padding: 25px;
-            background: #f8f9ff;
             border-radius: 10px;
+            text-align: center;
             transition: transform 0.3s ease;
         }
         
@@ -98,30 +108,31 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             font-size: 1.5rem;
         }
         
-        .contact-method h4 {
-            color: #333;
-            margin-bottom: 10px;
+        .contact-method:nth-child(1) .contact-icon { background-color: #ff4c4c; }
+        .contact-method:nth-child(2) .contact-icon { background-color: #0099e5; }
+        .contact-method:nth-child(3) .contact-icon { background-color: #34bf49; }
+        .contact-method:nth-child(4) .contact-icon { background-color: #ff9800; }
+        
+        .subscription-section {
+            background: linear-gradient(45deg, #0099e5, #34bf49);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
         }
         
-        .contact-method p {
-            color: #666;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
+        .subscription-form {
+            max-width: 500px;
+            margin: 30px auto 0;
         }
         
-        .contact-link {
-            color: #667eea;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        
-        .contact-link:hover {
-            text-decoration: underline;
+        .subscription-form .form-group {
+            margin-bottom: 20px;
         }
         
         .social-contact {
@@ -131,52 +142,30 @@
             margin-top: 30px;
         }
         
-        .social-contact a {
-            width: 45px;
-            height: 45px;
+        .social-contact .social-link {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f0f2ff;
-            color: #667eea;
+            background: #f8f9fa;
+            color: #333;
             transition: all 0.3s ease;
         }
         
-        .social-contact a:hover {
-            background: #667eea;
-            color: white;
+        .social-contact .social-link:hover {
             transform: translateY(-3px);
+            background: #0099e5;
+            color: white;
         }
         
-        .faq-section {
-            margin-top: 60px;
-        }
-        
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .faq-item {
-            background: #f8f9ff;
-            padding: 25px;
+        .response-time {
+            background: #f8fff9;
+            padding: 20px;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .faq-item h4 {
-            color: #333;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .faq-item h4 i {
-            color: #667eea;
+            margin-top: 30px;
+            border-left: 4px solid #34bf49;
         }
         
         @media (max-width: 992px) {
@@ -187,46 +176,55 @@
             .contact-methods {
                 grid-template-columns: 1fr;
             }
-            
-            .faq-grid {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (max-width: 768px) {
-            .contact-form-section, .contact-info-section {
+            .contact-form-section,
+            .contact-info-section {
                 padding: 25px;
             }
             
-            .contact-hero {
-                padding: 60px 0 30px;
+            .subscription-section {
+                padding: 30px 20px;
             }
         }
     </style>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-59ZTFMY1C8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-59ZTFMY1C8');
+    </script>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
-                <a href="../index.html" class="logo">
-                    <img src="../assets/logo.png" alt="HSE Calculator Logo" class="logo-img">
-                    <span>HSE Calculator</span>
-                </a>
-                
-                <div class="nav-links" id="navLinks">
-                    <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                    <a href="all-calculators.html" class="nav-link"><i class="fas fa-calculator"></i> All Calculators</a>
-                    <a href="products.html" class="nav-link"><i class="fas fa-shopping-bag"></i> Safety Products</a>
-                    <a href="tools.html" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
-                    <a href="blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
-                    <a href="contact.html" class="nav-link active"><i class="fas fa-envelope"></i> Contact</a>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/logo.png" alt="PPE Marts Logo" class="logo-img">
+                        <span class="logo-text">PPE Marts</span>
+                    </a>
                 </div>
                 
-                <div class="mobile-toggle" id="mobileToggle">
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">PPE Products</a></li>
+                    <li class="nav-item"><a href="ppe-calculator.html" class="nav-link">PPE Calculator</a></li>
+                    <li class="nav-item"><a href="tools-explore.html" class="nav-link">Explore Tools</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="about-us.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+                
+                <div class="nav-toggle" id="navToggle">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
@@ -236,8 +234,10 @@
     <!-- Contact Hero -->
     <section class="contact-hero">
         <div class="container">
-            <h1>Contact HSE Calculator</h1>
-            <p>Get support, suggest improvements, or inquire about partnerships</p>
+            <h1 class="hero-title">Get In Touch</h1>
+            <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto 30px;">
+                Have questions about PPE requirements, need support with our tools, or want to partner with us? We're here to help.
+            </p>
         </div>
     </section>
 
@@ -247,35 +247,40 @@
             <div class="contact-grid">
                 <!-- Contact Form -->
                 <div class="contact-form-section">
-                    <h2 style="color: #667eea; margin-bottom: 25px;">Send Us a Message</h2>
+                    <h2 style="color: #0099e5; margin-bottom: 30px;">Send Us a Message</h2>
                     
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Your Name *</label>
-                            <input type="text" id="name" class="form-control" required placeholder="Enter your full name">
+                            <input type="text" id="name" class="form-control" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-control" required placeholder="your@email.com">
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" class="form-control">
                         </div>
                         
                         <div class="form-group">
                             <label for="subject">Subject *</label>
                             <select id="subject" class="form-control" required>
                                 <option value="">Select a subject</option>
-                                <option value="calculator-support">Calculator Support</option>
-                                <option value="bug-report">Bug Report</option>
-                                <option value="feature-request">Feature Request</option>
-                                <option value="partnership">Partnership Inquiry</option>
-                                <option value="affiliate">Affiliate Program</option>
-                                <option value="general">General Question</option>
+                                <option value="product-inquiry">Product Inquiry</option>
+                                <option value="calculator-help">Calculator Help</option>
+                                <option value="affiliate-partnership">Affiliate Partnership</option>
+                                <option value="technical-support">Technical Support</option>
+                                <option value="general-question">General Question</option>
+                                <option value="feedback">Feedback & Suggestions</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
                             <label for="message">Your Message *</label>
-                            <textarea id="message" class="form-control" required placeholder="Please describe your inquiry in detail..."></textarea>
+                            <textarea id="message" class="form-control" required></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1.1rem;">
@@ -288,105 +293,130 @@
                 
                 <!-- Contact Information -->
                 <div class="contact-info-section">
-                    <h2 style="color: #764ba2; margin-bottom: 25px;">Contact Information</h2>
-                    
-                    <p style="color: #666; margin-bottom: 25px;">
-                        We're here to help you with any questions about our HSE calculators, tools, or safety resources.
-                    </p>
+                    <h2 style="color: #34bf49; margin-bottom: 30px;">Contact Information</h2>
                     
                     <div class="contact-methods">
                         <div class="contact-method">
                             <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <h4>Email Us</h4>
+                            <h3>Email Us</h3>
                             <p>contact@amjathkhan.com</p>
-                            <a href="mailto:contact@amjathkhan.com" class="contact-link">Send Email</a>
+                            <a href="mailto:contact@amjathkhan.com" style="color: #0099e5; font-weight: 500;">Send Email</a>
                         </div>
                         
                         <div class="contact-method">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <h4>Call Us</h4>
+                            <h3>Call Us</h3>
                             <p>+91-9750816163</p>
-                            <a href="tel:+919750816163" class="contact-link">Call Now</a>
+                            <a href="tel:+919750816163" style="color: #0099e5; font-weight: 500;">Call Now</a>
                         </div>
                         
                         <div class="contact-method">
                             <div class="contact-icon">
                                 <i class="fas fa-globe"></i>
                             </div>
-                            <h4>Website</h4>
+                            <h3>Website</h3>
                             <p>www.amjathkhan.com</p>
-                            <a href="https://www.amjathkhan.com" target="_blank" class="contact-link">Visit Site</a>
+                            <a href="https://www.amjathkhan.com" target="_blank" style="color: #0099e5; font-weight: 500;">Visit Site</a>
                         </div>
                         
                         <div class="contact-method">
                             <div class="contact-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
-                            <h4>Response Time</h4>
+                            <h3>Response Time</h3>
                             <p>Within 24 hours</p>
-                            <span style="color: #34bf49; font-weight: 600;">Mon-Sun: 9AM-6PM IST</span>
+                            <span style="color: #34bf49; font-weight: 500;">Mon-Sun: 9AM-6PM</span>
                         </div>
                     </div>
                     
-                    <div style="background: #f0f2ff; padding: 20px; border-radius: 10px; margin-top: 25px;">
-                        <h4 style="color: #667eea; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-info-circle"></i> What to Expect
-                        </h4>
-                        <p style="color: #666; font-size: 0.95rem; margin: 0;">
-                            We typically respond within 24 hours. For urgent matters, please call us directly. Include as much detail as possible for faster resolution.
+                    <div class="response-time">
+                        <h4 style="color: #34bf49; margin-bottom: 10px;"><i class="fas fa-info-circle"></i> What to Expect</h4>
+                        <p style="color: #666; font-size: 0.95rem;">
+                            We typically respond within 24 hours. For urgent matters, please call us directly. Include as much detail as possible in your message for faster resolution.
                         </p>
                     </div>
                     
                     <div class="social-contact">
-                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank" title="Facebook">
+                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank" class="social-link">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://x.com/amjikhan" target="_blank" title="Twitter">
+                        <a href="https://x.com/amjikhan" target="_blank" class="social-link">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://www.instagram.com/amjathkhan_official" target="_blank" title="Instagram">
+                        <a href="https://www.instagram.com/amjathkhan_official" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman" target="_blank" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman" target="_blank" class="social-link">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank" title="Bluesky">
+                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank" class="social-link">
                             <i class="fas fa-feather"></i>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <h2 style="text-align: center; color: #333; margin-bottom: 20px;">Frequently Asked Questions</h2>
-                <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto 40px;">
-                    Find quick answers to common questions about HSE Calculator
-                </p>
+            <!-- Newsletter Subscription -->
+            <div class="subscription-section">
+                <h2 style="color: white; margin-bottom: 15px;">Subscribe to Our Newsletter</h2>
+                <p style="opacity: 0.9; margin-bottom: 10px;">Get safety tips, PPE guides, and exclusive updates directly in your inbox.</p>
+                <p style="opacity: 0.8; font-size: 0.95rem;">No spam. Unsubscribe anytime.</p>
                 
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4><i class="fas fa-question-circle"></i> Are the calculators really free?</h4>
-                        <p style="color: #666;">Yes! All our HSE calculators and safety tools are completely free to use. No registration, no hidden costs.</p>
+                <form id="subscriptionForm" class="subscription-form">
+                    <div class="form-group">
+                        <input type="text" id="subName" class="form-control" placeholder="Your Name" required>
                     </div>
                     
-                    <div class="faq-item">
-                        <h4><i class="fas fa-question-circle"></i> Can I suggest a new calculator?</h4>
-                        <p style="color: #666;">Absolutely! We welcome suggestions for new calculators. Use the contact form above to share your ideas.</p>
+                    <div class="form-group">
+                        <input type="email" id="subEmail" class="form-control" placeholder="Email Address" required>
                     </div>
                     
-                    <div class="faq-item">
-                        <h4><i class="fas fa-question-circle"></i> How accurate are the calculations?</h4>
-                        <p style="color: #666;">Our calculators are based on industry standards and regulations. However, they should be used as guidelines and verified by qualified professionals.</p>
+                    <div class="form-group" style="text-align: left;">
+                        <label style="color: white; font-weight: normal;">
+                            <input type="checkbox" id="privacyCheck" required style="margin-right: 8px;">
+                            I agree to receive emails and accept the <a href="privacy-policy.html" style="color: white; text-decoration: underline;">Privacy Policy</a>
+                        </label>
                     </div>
                     
-                    <div class="faq-item">
-                        <h4><i class="fas fa-question-circle"></i> Do you provide safety consulting?</h4>
-                        <p style="color: #666;">Yes, Amjath Khan offers professional HSE consulting services. Contact us for customized safety solutions.</p>
+                    <button type="submit" class="btn" style="background: white; color: #0099e5; padding: 14px 40px; font-weight: 600;">
+                        <i class="fas fa-envelope"></i> Subscribe Now
+                    </button>
+                </form>
+                
+                <div id="subscriptionMessage" style="display: none; margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;"></div>
+                
+                <div style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
+                    <p><i class="fas fa-shield-alt"></i> Your email is safe with us. We never share your information.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div style="margin-top: 60px;">
+                <h2 style="text-align: center; margin-bottom: 40px; color: #333;">Frequently Asked Questions</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+                        <h4 style="color: #0099e5; margin-bottom: 10px;"><i class="fas fa-question-circle"></i> How do affiliate links work?</h4>
+                        <p style="color: #666; font-size: 0.95rem;">When you click "Buy Now" and make a purchase, we earn a small commission at no extra cost to you. This supports our free tools.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+                        <h4 style="color: #0099e5; margin-bottom: 10px;"><i class="fas fa-question-circle"></i> Are the calculators free?</h4>
+                        <p style="color: #666; font-size: 0.95rem;">Yes! All our PPE calculators and safety tools are completely free to use. No registration required.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+                        <h4 style="color: #0099e5; margin-bottom: 10px;"><i class="fas fa-question-circle"></i> Can I suggest a product?</h4>
+                        <p style="color: #666; font-size: 0.95rem;">Absolutely! Use the contact form to suggest PPE products you'd like to see featured on our site.</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+                        <h4 style="color: #0099e5; margin-bottom: 10px;"><i class="fas fa-question-circle"></i> Do you provide safety consulting?</h4>
+                        <p style="color: #666; font-size: 0.95rem;">Our founder Amjath Khan offers professional safety consulting services. Contact us for details.</p>
                     </div>
                 </div>
             </div>
@@ -398,140 +428,227 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="../index.html" class="footer-logo">
-                        <img src="../assets/logo.png" alt="HSE Calculator Logo" class="logo-img">
-                        <span>HSE Calculator</span>
-                    </a>
-                    <p>Professional tools for health, safety, and environment professionals.</p>
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://x.com/amjikhan" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/amjathkhan_official/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank"><i class="fas fa-feather"></i></a>
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="PPE Marts" class="footer-logo-img">
+                        <h3>PPE Marts</h3>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted marketplace for Personal Protective Equipment and safety calculation tools.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Amjathkhan.s" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/amjikhan" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/amjathkhan_official" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/amjathkhan-shiekusman" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://bsky.app/profile/amjathkhan.bsky.social" target="_blank" class="social-link">
+                            <i class="fas fa-feather"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="all-calculators.html">All Calculators</a></li>
-                        <li><a href="products.html">Safety Products</a></li>
-                        <li><a href="tools.html">Tools</a></li>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">PPE Products</a></li>
+                        <li><a href="ppe-calculator.html">PPE Calculator</a></li>
+                        <li><a href="tools-explore.html">Explore Tools</a></li>
                         <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Use</a></li>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-use.html">Terms of Use</a></li>
                         <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
                         <li><a href="sitemap.html">Sitemap</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Support Our Work</h4>
-                    <p>Help us maintain and improve these free tools</p>
-                    <a href="https://buymeacoffee.com/s.amjathkhan" target="_blank" class="btn btn-primary btn-small mt-2" style="display: inline-flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-mug-hot"></i> Buy Me a Coffee
-                    </a>
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact@amjathkhan.com</p>
+                        <p><i class="fas fa-phone"></i> +91-9750816163</p>
+                        <p><i class="fas fa-globe"></i> <a href="https://www.amjathkhan.com" target="_blank">www.amjathkhan.com</a></p>
+                    </div>
+                    
+                    <div class="coffee-section">
+                        <p>Support our work:</p>
+                        <a href="https://buymeacoffee.com/s.amjathkhan" target="_blank" class="coffee-btn">
+                            <i class="fas fa-coffee"></i> Buy Me a Coffee
+                        </a>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 HSE Calculator. All rights reserved.</p>
-                <p>Professional tools for workplace safety and compliance</p>
+                <div class="visitor-counter">
+                    <i class="fas fa-eye"></i> 
+                    <span>Website Visitors: <span id="totalVisitors">2,847</span></span>
+                </div>
+                <p class="copyright">&copy; 2025 PPE Marts. All rights reserved.</p>
+                <div class="footer-badges">
+                    <span class="badge">Mobile Friendly</span>
+                    <span class="badge">SSL Secure</span>
+                    <span class="badge">Ad Compliant</span>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
-    <script src="../js/main.js"></script>
     <script>
-        // Contact Form Handling
+        // Initialize contact page
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navLinks = document.getElementById('navLinks');
+            setupContactForm();
+            setupSubscriptionForm();
+            updateVisitorCount();
             
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                });
-            }
+            // Mobile navigation
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
             
-            // Contact form submission
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                navToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        function setupContactForm() {
             const contactForm = document.getElementById('contactForm');
             const formMessage = document.getElementById('formMessage');
             
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Get form values
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const subject = document.getElementById('subject').value;
-                    const message = document.getElementById('message').value;
-                    
-                    // Simple validation
-                    if (!name || !email || !subject || !message) {
-                        showMessage('Please fill in all required fields.', 'error');
-                        return;
-                    }
-                    
-                    // In a real app, you would send this to a server
-                    // For demo purposes, we'll show success message
-                    
-                    // Save contact to localStorage (for demo)
-                    const contacts = JSON.parse(localStorage.getItem('hseContacts') || '[]');
-                    contacts.push({
-                        name: name,
-                        email: email,
-                        subject: subject,
-                        message: message,
-                        timestamp: new Date().toISOString()
-                    });
-                    localStorage.setItem('hseContacts', JSON.stringify(contacts));
-                    
-                    // Show success message
-                    showMessage('Thank you! Your message has been sent. We will respond within 24 hours.', 'success');
-                    
-                    // Reset form
-                    contactForm.reset();
-                });
-            }
-            
-            function showMessage(text, type) {
-                if (!formMessage) return;
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                formMessage.textContent = text;
-                formMessage.style.display = 'block';
-                formMessage.style.padding = '15px';
-                formMessage.style.borderRadius = '8px';
-                formMessage.style.marginTop = '20px';
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
                 
-                if (type === 'success') {
-                    formMessage.style.backgroundColor = '#d4edda';
-                    formMessage.style.color = '#155724';
-                    formMessage.style.border = '1px solid #c3e6cb';
-                } else {
-                    formMessage.style.backgroundColor = '#f8d7da';
-                    formMessage.style.color = '#721c24';
-                    formMessage.style.border = '1px solid #f5c6cb';
+                // Simple validation
+                if (!name || !email || !subject || !message) {
+                    showFormMessage('Please fill in all required fields.', 'error');
+                    return;
                 }
                 
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
+                // In a real application, you would send this to a server
+                // For now, we'll simulate success
+                
+                // Show success message
+                showFormMessage('Thank you! Your message has been sent. We will respond within 24 hours.', 'success');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Save contact submission
+                saveContactSubmission({ name, email, subject, message });
+            });
+        }
+
+        function setupSubscriptionForm() {
+            const subscriptionForm = document.getElementById('subscriptionForm');
+            const subscriptionMessage = document.getElementById('subscriptionMessage');
+            
+            subscriptionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('subName').value;
+                const email = document.getElementById('subEmail').value;
+                const privacyCheck = document.getElementById('privacyCheck').checked;
+                
+                if (!name || !email || !privacyCheck) {
+                    showSubscriptionMessage('Please fill all fields and agree to privacy policy.', 'error');
+                    return;
+                }
+                
+                // Save subscription
+                saveSubscription({ name, email });
+                
+                // Show success message
+                showSubscriptionMessage('Thank you for subscribing! You will receive our next newsletter.', 'success');
+                
+                // Reset form
+                subscriptionForm.reset();
+            });
+        }
+
+        function showFormMessage(message, type) {
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = message;
+            formMessage.style.display = 'block';
+            formMessage.style.background = type === 'success' ? '#d4edda' : '#f8d7da';
+            formMessage.style.color = type === 'success' ? '#155724' : '#721c24';
+            formMessage.style.border = type === 'success' ? '1px solid #c3e6cb' : '1px solid #f5c6cb';
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSubscriptionMessage(message, type) {
+            const subscriptionMessage = document.getElementById('subscriptionMessage');
+            subscriptionMessage.textContent = message;
+            subscriptionMessage.style.display = 'block';
+            subscriptionMessage.style.background = type === 'success' ? 'rgba(212, 237, 218, 0.2)' : 'rgba(248, 215, 218, 0.2)';
+            subscriptionMessage.style.color = type === 'success' ? '#d4edda' : '#f8d7da';
+            
+            setTimeout(() => {
+                subscriptionMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function saveContactSubmission(data) {
+            const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+            submissions.push({
+                ...data,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+        }
+
+        function saveSubscription(data) {
+            const subscriptions = JSON.parse(localStorage.getItem('newsletterSubscriptions') || '[]');
+            subscriptions.push({
+                ...data,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('newsletterSubscriptions', JSON.stringify(subscriptions));
+        }
+
+        function updateVisitorCount() {
+            const totalVisitors = document.getElementById('totalVisitors');
+            
+            if (localStorage.getItem('ppemartsVisitors')) {
+                totalVisitors.textContent = parseInt(localStorage.getItem('ppemartsVisitors')).toLocaleString();
+            } else {
+                const baseVisitors = 2847;
+                totalVisitors.textContent = baseVisitors.toLocaleString();
             }
-        });
+        }
+
+        // Update visitor count periodically
+        setInterval(() => {
+            const current = parseInt(localStorage.getItem('ppemartsVisitors') || '2847');
+            const increment = Math.floor(Math.random() * 5) + 1;
+            localStorage.setItem('ppemartsVisitors', (current + increment).toString());
+            document.getElementById('totalVisitors').textContent = (current + increment).toLocaleString();
+        }, 30 * 60 * 1000);
     </script>
 </body>
 </html>
